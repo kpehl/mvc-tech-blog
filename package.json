@@ -1,0 +1,35 @@
+{
+  "name": "mvc-tech-blog",
+  "version": "1.0.0",
+  "description": "This project uses the Model-View-Controller (MVC) paradigm to create a blog-style website where developers can post articles with commentary, edit posts, and comment on other user's articles.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "watch": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kpehl/mvc-tech-blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kpehl/mvc-tech-blog/issues"
+  },
+  "homepage": "https://github.com/kpehl/mvc-tech-blog#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "connect-session-sequelize": "^7.0.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.0",
+    "express-session": "^1.17.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.3.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
