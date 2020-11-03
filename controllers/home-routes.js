@@ -93,4 +93,9 @@ router.get('/post/:id', (req, res) => {
       });
   });
 
+// Render the login page
+router.get('/login', (req, res) => {
+    res.render('login');
+  });
+
 module.exports = router;
