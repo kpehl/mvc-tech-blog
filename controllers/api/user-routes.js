@@ -73,9 +73,15 @@ router.post('/', (req, res) => {
     email: req.body.email,
     password: req.body.password
   })
-    // send the user data back to the client as confirmation
+    // send the user data back to the client as confirmation and save the session
     .then(dbUserData => {
+      req.session.save(() => {
+        req.session.user_id = dbUserData.id;
+        req.session.username = dbUserData.username;
+        req.session.loggedIn = true;
+    
         res.json(dbUserData);
+      });
     })
     // if there is a server error, return that error
     .catch(err => {
@@ -106,8 +112,15 @@ router.post('/login', (req, res) => {
             res.status(400).json({ message: 'Incorrect password!' });
             return;
         }
-        // otherwise return the user object and a success message
+        // otherwise, save the session, and return the user object and a success message
+        req.session.save(() => {
+          // declare session variables
+          req.session.user_id = dbUserData.id;
+          req.session.username = dbUserData.username;
+          req.session.loggedIn = true;
+    
           res.json({ user: dbUserData, message: 'You are now logged in!' });
+        });
     });  
 });
 

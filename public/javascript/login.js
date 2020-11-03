@@ -22,23 +22,7 @@ async function signupFormHandler(event) {
         // when the fetch promise is fufilled, check the response status and convey the results
         if (response.ok) {
             alert('Account created! Logging you in now.');
-
-            // POST to the login route with the user information
-            const response = await fetch('/api/users/login', {
-                method: 'post',
-                body: JSON.stringify({
-                    email,
-                    password
-                }),
-                headers: {'Content-Type': 'application/json'}
-            });
-            // when the fetch promise is fufilled, check the response status; if the response is good, load the dashboard; if there is an error, alert with the status
-            if (response.ok) {
-                document.location.replace('/dashboard');
-            } else {
-                alert(response.statusText)
-            }
-
+            document.location.replace('/dashboard');
         } else {
             alert(response.statusText)
         }
