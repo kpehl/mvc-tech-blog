@@ -11,11 +11,23 @@ const express = require('express');
 const routes = require('./controllers/');
 // Sequelize connection to the database
 const sequelize = require('./config/connection');
+// Handlebars template engine for front-end
+const exphbs = require('express-handlebars')
+
+// Initialize handlebars for the html templates
+const hbs = exphbs.create({});
 
 // Initialize the server
 const app = express();
 // Define the port for the server
 const PORT = process.env.PORT || 3001;
+
+// Give the server a path to the public directory for static files
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Set handlebars as the template engine for the server
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
 
 // Have Express parse JSON and string data
 app.use(express.json());
