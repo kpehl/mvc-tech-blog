@@ -128,9 +128,15 @@
     line-height: 150%;
   }
   
+  .post .title {
+    font-style: italic;
+    font-size: 1.25rem;
+    color: #7d7d7d;
+  }
+
   .post .title span {
     font-style: italic;
-    font-size: 90%;
+    font-size: 0.8rem;
     color: #7d7d7d;
   }
   
