@@ -83,8 +83,11 @@ router.get('/post/:id', (req, res) => {
         }
         // serialize the post data, removing extra sequelize meta data
         const post = dbPostData.get({ plain: true });
-        // pass the posts into the homepage template
-        res.render('single-post', {post});
+        // pass the posts and a session variable into the single post template
+        res.render('single-post', {
+            post,
+            loggedIn: req.session.loggedIn
+          });
       })
       .catch(err => {
         // if a server error occured, return an error
