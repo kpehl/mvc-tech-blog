@@ -4,7 +4,7 @@ async function newFormHandler(event) {
 
     // Get the post title and post text from the form
     const title = document.querySelector('input[name="post-title"]').value;
-    const post_text = document.querySelector('input[name="post-text"]').value;
+    const post_text = document.querySelector('textarea[name="post-text"]').value;
 
     // use the add a new post POST route to add the post 
     // user id is added from the session information in the route
