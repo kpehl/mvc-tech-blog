@@ -96,6 +96,12 @@
     flex: 1;
     padding: 2% 4%;
   }
+
+  nav {
+      padding: 1.2rem;
+      text-align: right;
+      white-space: pre;
+  }
   
   .btn-no-style {
     background: none;
@@ -164,7 +170,7 @@
   }
   
   .comment:nth-child(odd) {
-    background-color: #fff5eb;
+    background-color: #f0f5ff;
   }
   
   .comment .meta {
