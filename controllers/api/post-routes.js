@@ -5,6 +5,8 @@ const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
 // Sequelize database connection
 const sequelize = require('../../config/connection');
+// Authorization Helper
+const withAuth = require('../../utils/auth');
 
 // Routes
 
@@ -92,7 +94,7 @@ router.get('/:id', (req, res) => {
   });
 
 // POST api/posts -- create a new post
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
     // expects object of the form {title: 'Sample Title Here', post_text: 'Here's some sample text for a post.', user_id: 1}
     Post.create({
         title: req.body.title,
@@ -107,7 +109,7 @@ router.post('/', (req, res) => {
 });
 
 // PUT api/posts/1-- update a post's title or text
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
     Post.update(req.body,
         {
             where: {
@@ -129,7 +131,7 @@ router.put('/:id', (req, res) => {
 });
 
 // DELETE api/posts/1 -- delete a post
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
     Post.destroy({
       where: {
         id: req.params.id

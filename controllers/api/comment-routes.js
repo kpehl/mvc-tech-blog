@@ -3,6 +3,8 @@
 const router = require('express').Router();
 // Comment model
 const { Comment } = require('../../models');
+// Authorization Helper
+const withAuth = require('../../utils/auth');
 
 // Routes
 
@@ -20,7 +22,7 @@ router.get('/', (req, res) => {
   });
 
 // Post a new comment
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
   // check the session, and if it exists, create a comment
   if (req.session) {
     Comment.create({
@@ -38,7 +40,7 @@ router.post('/', (req, res) => {
 });
 
 // Delete a comment
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
     Comment.destroy({
         where: {
           id: req.params.id
