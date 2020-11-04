@@ -109,4 +109,14 @@ router.get('/login', (req, res) => {
     res.render('login');
   });
 
+// Render the sign up page.  If the user is logged in, redirect to the home page.
+router.get('/signup', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+
+  res.render('signup');
+});
+
 module.exports = router;
