@@ -1,21 +1,7 @@
 <ul class="post-list">
-  {{#each posts}}
+  {{#each posts as |post|}}
   <li>
-    <article class="post">
-      <div class="title">
-        <span><a href="/post/{{id}}">{{title}}</a></span><span style="float:right">Posted by {{user.username}} on {{created_at}}</span><br>
-        <span style="float:right">{{comments.length}} comment(s)</span>
-      </div>
-      {{!-- <div class="meta">
-        Posted by {{user.username}} on
-        {{created_at}}
-        |
-        <a href="/post/{{id}}">{{comments.length}} comment(s)</a>
-      </div> --}}
-      <div class = "content">
-          <p>{{post_text}}</p>
-      </div>
-    </article>
+    {{> post-info post }}
   </li>
   {{/each}}
 </ul>
