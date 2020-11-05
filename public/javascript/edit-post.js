@@ -9,7 +9,7 @@ async function editFormHandler(event) {
 
     // Get the post title and post text from the form
     const title = document.querySelector('input[name="post-title"]').value;
-    const post_text = document.querySelector('input[name="post-text"]').value;
+    const post_text = document.querySelector('textarea[name="post-text"]').value;
 
     // use the update route to update the post
     const response = await fetch(`/api/posts/${id}`, {
