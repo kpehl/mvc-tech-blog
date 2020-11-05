@@ -3,19 +3,27 @@ async function editFormHandler(event) {
     event.preventDefault();
 
     // Get the user name, user id, email, and password from the form
-    const username = document.querySelector('input[name="user-name"]').value;
-    const id = document.querySelector('input[name="user-id"]')
-    const email = document.querySelector('input[name="email"]').value;
-    // const password = document.querySelector('input[name="password"]').value.trim();
-    console.log(username, email)
+    let username = document.querySelector('input[name="user-name"]').value;
+    if(username.length) username = '"username": "' + username + '"';
+    let email = document.querySelector('input[name="email"]').value;
+    if(email.length) email = '"email": "' + email + '"';
+    let password = document.querySelector('input[name="password"]').value.trim();
+    if(password.length) password = '"password": "' + password + '"';
+    const id = document.querySelector('input[name="user-id"]').value;
+    console.log(id)
+
+    // Create a string with whichever updates were provided
+    let userUpdate = '{' + [username, email, password].filter(value => value).join(',') + '}';
+    console.log(userUpdate)
+    // Create the JSON parsed object
+    userUpdate = JSON.parse(userUpdate)
+    console.log(userUpdate)
+
 
     // use the update route to update the post
     const response = await fetch(`/api/users/${id}`, {
         method: 'PUT',
-        body: JSON.stringify({
-          username,
-          email
-        }),
+        body: JSON.stringify(userUpdate),
         headers: {
           'Content-Type': 'application/json'
         }
