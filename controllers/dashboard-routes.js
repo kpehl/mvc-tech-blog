@@ -91,4 +91,32 @@ router.get('/edit/:id', withAuth, (req, res) => {
     });
 });
 
+// A route to edit the logged in user
+router.get('/edituser', withAuth, (req, res) => {
+  // Acess the User model and run the findOne() method to get a single user based on parameters
+  User.findOne({
+    // when the data is sent back, exclude the password property
+    attributes: { exclude: ['password'] },
+    where: {
+      // use id as the parameter for the request
+      id: req.session.user_id
+    }
+  })
+    .then(dbUserData => {
+      if (!dbUserData) {
+        // if no user is found, return an error
+        res.status(404).json({ message: 'No user found with this id' });
+        return;
+      }
+      // otherwise, return the data for the requested user
+      const user = dbUserData.get({ plain: true });
+      res.render('edit-user', {user, loggedIn: true});
+    })
+    .catch(err => {
+      // if there is a server error, return that error
+      console.log(err);
+      res.status(500).json(err);
+    })
+  });
+
 module.exports = router;
